@@ -19,4 +19,30 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    
+    <string-array name="easy_questions">
+        <item>The body of the egyptian sphinx was based on which animal?</item>
+        <item>What is the capital of Denmark?</item>
+        <item>What is the only state in the United States that does not have a flag in a shape with 4 edges?</item>
+        <item>What is the capital of the united states?</item>
+        <item>What is the smallest country in the world?</item>
+        <item>What is the capital of Scotland?</item>
+        <item>What is the capital of Australia?</item>
+        <item>Which small country is located between the borders of France and Spain?</item>
+        <item>Where would you find the "Spanish Steps"?</item>
+        <item>Which country has the biggest population?</item>
+    </string-array>
+
+    <string-array name="easy_answers">
+        <item>Lion</item>
+        <item>Copenhagen</item>
+        <item>Ohio</item>
+        <item>Washington, D.C.</item>
+        <item>Vatican City</item>
+        <item>Edinburgh</item>
+        <item>ACT</item>
+        <item>Andorra</item>
+        <item>Rome</item>
+        <item>China</item>
+    </string-array>
 </resources>

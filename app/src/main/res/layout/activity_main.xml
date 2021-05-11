@@ -25,6 +25,7 @@
         android:padding="10sp"
         android:textSize="30sp"
         android:id="@+id/play"
+        android:onClick="gameClicked"
         />
 
 

@@ -31,5 +31,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
+    // TODO: 11/05/2021 Add on back press action.
+
 
 }

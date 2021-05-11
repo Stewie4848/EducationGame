@@ -34,4 +34,9 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void onGameStarted() {
+        Intent intent = new Intent(this, GameActivity.class);
+        startActivity(intent);
+    }
 }

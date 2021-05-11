@@ -1,42 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:layout_height="match_parent"
     tools:context=".GameActivity"
     >
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/score"
         android:textSize="40sp"
         android:text="0"
-        android:textAlignment="center"/>
+        android:id="@+id/score"
+        android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="parent"/>
 
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-    <TableRow
+
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="This is a test question"
+        app:layout_constraintTop_toBottomOf="@id/score"
+        android:textSize="35sp"
+        android:layout_margin="10sp"
+        />
 
-        >
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/button3"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="This is the test question"
-            android:textSize="35sp"
-            android:layout_weight="0"
-            android:layout_margin="10sp"
-            />
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        app:layout_constraintLeft_toRightOf="@+id/button1"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/button4"/>
 
-    </TableRow>
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/button4"
+        android:layout_marginBottom="15sp"
+       />
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="150sp"
+        android:layout_height="150sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/button3"
+        android:layout_marginBottom="15sp"
+        />
 
 
-    </TableLayout>
-</androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

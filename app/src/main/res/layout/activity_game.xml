@@ -22,6 +22,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/timer"
         android:text="60"
         android:textSize="30sp"
         app:layout_constraintTop_toBottomOf="@id/score"
@@ -44,6 +45,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/question"
         android:text="This is a test question"
         app:layout_constraintTop_toBottomOf="@id/progressBar"
         android:textSize="35sp"

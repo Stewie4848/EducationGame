@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -16,6 +17,8 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Random;
 import java.util.Set;
+
+import android.widget.RemoteViews;
 
 public class GameActivity extends AppCompatActivity {
     private Game game = new Game();
@@ -31,11 +34,7 @@ public class GameActivity extends AppCompatActivity {
     private int answerArray;
     private final Random random = new Random();
     private String[] answers;
-//    private List<Integer> questionOrder;
-//    private int[] questionOrder;
-//    public Set<Integer> questionOrder = new Set<Integer>();
     private ArrayList<Integer> questionOrder = new ArrayList<>();
-//    private int numberOfQuestions = 0;
 
 
     @Override
@@ -87,10 +86,8 @@ public class GameActivity extends AppCompatActivity {
         int i = random.nextInt(questions.length - 1);
         questionOrder.add(i);
         question.setText(questions[i]);
-//        System.out.println(i);
+        setAnswers(i);
     }
-
-
 
 
     private void newQuestion() {
@@ -111,7 +108,7 @@ public class GameActivity extends AppCompatActivity {
         }
         System.out.println(questionOrder.size());
         System.out.println(questions.length);
-
+        setAnswers(j);
 
 
     }
@@ -119,8 +116,6 @@ public class GameActivity extends AppCompatActivity {
     private void getQuestions() {
         questions = getResources().getStringArray(questionArray);
         answers = getResources().getStringArray(answerArray);
-//        numberOfQuestions = questions.length;
-
 
 
     }
@@ -146,4 +141,30 @@ public class GameActivity extends AppCompatActivity {
 
 
     }
+
+    // Assign answers to each button
+    private void setAnswers(int questionID) {
+        ArrayList<Integer> questionButtons = new ArrayList<>();
+
+        // Sets an answer for each button
+        for (int value : buttons) {
+            Button button = findViewById(value);
+            int i = random.nextInt(answers.length - 1);
+            while (questionButtons.contains(i) || i == questionID) {
+                i = random.nextInt(answers.length - 1);
+            }
+            questionButtons.add(i);
+            button.setText(answers[i]);
+
+        }
+
+        // Finds a random button and assigns the correct answer
+        int b = random.nextInt(buttons.length - 1);
+        Button button = findViewById(buttons[b]);
+        button.setText(answers[questionID]);
+
+
+    }
+
+
 }

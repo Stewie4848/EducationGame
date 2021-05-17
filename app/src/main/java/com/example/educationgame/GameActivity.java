@@ -35,7 +35,7 @@ public class GameActivity extends AppCompatActivity {
 //    private int[] questionOrder;
 //    public Set<Integer> questionOrder = new Set<Integer>();
     private ArrayList<Integer> questionOrder = new ArrayList<>();
-    private int numberOfQuestions = 0;
+//    private int numberOfQuestions = 0;
 
 
     @Override
@@ -102,12 +102,16 @@ public class GameActivity extends AppCompatActivity {
             }
             if (questionOrder.size() == questions.length) {
                 gameComplete();
+                break;
             } else {
                 questionOrder.add(j);
+                question.setText(questions[j]);
                 state = false;
             }
         }
-        question.setText(questions[j]);
+        System.out.println(questionOrder.size());
+        System.out.println(questions.length);
+
 
 
     }
@@ -115,7 +119,7 @@ public class GameActivity extends AppCompatActivity {
     private void getQuestions() {
         questions = getResources().getStringArray(questionArray);
         answers = getResources().getStringArray(answerArray);
-        numberOfQuestions = questions.length;
+//        numberOfQuestions = questions.length;
 
 
 

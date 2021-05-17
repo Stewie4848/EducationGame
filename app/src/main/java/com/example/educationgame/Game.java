@@ -1,14 +1,17 @@
 package com.example.educationgame;
 
 public class Game {
-    public String difficulty;
+    public int difficulty;
     private int seconds;
     public int time_setting;
+    public int score = 0;
 
-    Game() {seconds = time_setting; }
+    Game() {
+        seconds = time_setting;
+    }
 
-    public void setDifficulty(String d) {
-        difficulty = d;
+    public void setDifficulty(int i) {
+        difficulty = i;
     }
 
     public void setTime_setting(int time) {
@@ -22,5 +25,22 @@ public class Game {
     public String getSeconds() {
         return Integer.toString(seconds);
     }
-    
+
+    public String getScore() {
+        return Integer.toString(score);
+    }
+
+    public void addScore() {
+        score += difficulty * 100;
+
+    }
+
+    public void removeScore() {
+        score -= difficulty * 2 * 100;
+        if (score <= 0) {
+            score = 0;
+        }
+    }
+
 }
+

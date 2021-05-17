@@ -68,6 +68,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/button2"
         app:layout_constraintBottom_toTopOf="@+id/button3"
+        android:onClick="buttonPressed"
         />
 
     <Button
@@ -76,7 +77,8 @@
         android:layout_height="150sp"
         app:layout_constraintLeft_toRightOf="@+id/button1"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/button4"/>
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        android:onClick="buttonPressed"/>
 
     <Button
         android:id="@+id/button3"
@@ -86,6 +88,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/button4"
         android:layout_marginBottom="15sp"
+        android:onClick="buttonPressed"
        />
     <Button
         android:id="@+id/button4"
@@ -95,6 +98,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/button3"
         android:layout_marginBottom="15sp"
+        android:onClick="buttonPressed"
         />
 
 

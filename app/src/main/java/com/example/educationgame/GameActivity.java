@@ -1,5 +1,6 @@
 package com.example.educationgame;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,6 +35,8 @@ public class GameActivity extends AppCompatActivity {
     private String[] answers;
     private ArrayList<Integer> questionOrder = new ArrayList<>();
     private int correctButton;
+    private int correctAnswers = 0;
+    private int wrongAnswers = 0;
 //    private int score;
 
 
@@ -84,11 +87,14 @@ public class GameActivity extends AppCompatActivity {
         if (view.getId() == correctButton) {
             game.addScore();
             System.out.println("Correct");
+            correctAnswers += 1;
 
         }
         else {
             game.removeScore();
             System.out.println("Wrong");
+            wrongAnswers += 1;
+
         }
         updateScore();
         newQuestion();
@@ -156,6 +162,12 @@ public class GameActivity extends AppCompatActivity {
     private void gameComplete() {
         finishedScore = game.score;
         finishedTime = game.seconds;
+
+        Intent intent = new Intent(this, GameComplete.class);
+        intent.putExtra("score", game.score);
+        intent.putExtra("Correct", correctAnswers);
+        intent.putExtra("Wrong", wrongAnswers);
+        startActivity(intent);
 
 
     }

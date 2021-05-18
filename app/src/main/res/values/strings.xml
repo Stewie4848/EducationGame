@@ -19,7 +19,8 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    
+    <string name="default_settings">Default</string>
+
     <string-array name="easy_questions">
         <item>The body of the egyptian sphinx was based on which animal?</item>
         <item>What is the capital of Denmark?</item>

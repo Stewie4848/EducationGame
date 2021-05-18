@@ -4,8 +4,8 @@
 
         <EditTextPreference
             app:key="time_setting"
-
             app:title="@string/time_title"
+            app:defaultValue="60"
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
@@ -16,21 +16,11 @@
             app:title="@string/difficulty_title"
             app:useSimpleSummaryProvider="true" />
 
-    </PreferenceCategory>
 
-    <PreferenceCategory app:title="@string/sync_header">
-
-        <SwitchPreferenceCompat
-            app:key="sync"
-            app:title="@string/sync_title" />
-
-        <SwitchPreferenceCompat
-            app:dependency="sync"
-            app:key="attachment"
-            app:summaryOff="@string/attachment_summary_off"
-            app:summaryOn="@string/attachment_summary_on"
-            app:title="@string/attachment_title" />
 
     </PreferenceCategory>
+
+
+
 
 </PreferenceScreen>

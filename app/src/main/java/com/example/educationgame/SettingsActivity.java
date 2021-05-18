@@ -16,6 +16,10 @@ import androidx.preference.PreferenceManager;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    private final String DEFAULT_TIME = "60";
+    private final String DEFAULT_DIFFICULTY = "1";
+    private final String DEFAULT_USERNAME = getString(R.string.default_username);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,12 +55,16 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
-    // TODO: 18/05/2021 Make this work somehow
     public void onDefaultPressed(View view) {
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        System.out.println(sharedPreferences);
-//        sharedPreferences.edit().putInt("time_setting", 60).apply();
-
+        System.out.println(sharedPreferences.getAll());
+        sharedPreferences
+                .edit()
+                .putString("time_setting", DEFAULT_TIME)
+                .putString("difficulty_setting", DEFAULT_DIFFICULTY)
+                .putString("username", DEFAULT_USERNAME)
+                .apply();
+        onBackPressed();
     }
 
 
@@ -69,10 +77,9 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

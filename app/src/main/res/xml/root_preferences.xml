@@ -3,6 +3,12 @@
     <PreferenceCategory app:title="@string/settings_header">
 
         <EditTextPreference
+            app:key="username"
+            app:title="User Name"
+            app:defaultValue="@string/default_username"
+            app:useSimpleSummaryProvider="true"/>
+
+        <EditTextPreference
             app:key="time_setting"
             app:title="@string/time_title"
             app:defaultValue="60"
@@ -12,7 +18,7 @@
             app:defaultValue="1"
             app:entries="@array/difficulty_entries"
             app:entryValues="@array/difficulty_values"
-            app:key="difficultySetting"
+            app:key="difficulty_setting"
             app:title="@string/difficulty_title"
             app:useSimpleSummaryProvider="true" />
 

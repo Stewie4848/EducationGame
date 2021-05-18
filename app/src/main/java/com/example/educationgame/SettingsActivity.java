@@ -18,7 +18,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private final String DEFAULT_TIME = "60";
     private final String DEFAULT_DIFFICULTY = "1";
-    private final String DEFAULT_USERNAME = getString(R.string.default_username);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,7 +62,7 @@ public class SettingsActivity extends AppCompatActivity {
                 .edit()
                 .putString("time_setting", DEFAULT_TIME)
                 .putString("difficulty_setting", DEFAULT_DIFFICULTY)
-                .putString("username", DEFAULT_USERNAME)
+                .putString("username", getResources().getString(R.string.default_username))
                 .apply();
         onBackPressed();
     }

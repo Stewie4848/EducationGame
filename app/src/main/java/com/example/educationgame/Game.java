@@ -2,20 +2,22 @@ package com.example.educationgame;
 
 public class Game {
     public int difficulty;
-    private int seconds;
-    public int time_setting;
+    public int seconds;
+    public int time;
     public int score = 0;
+    public String username;
 
     Game() {
-        seconds = time_setting;
-    }
-
-    public void setDifficulty(int i) {
-        difficulty = i;
-    }
-
-    public void setTime_setting(int time) {
         seconds = time;
+    }
+
+//    public void setDifficulty(int i) {
+//        difficulty = i;
+//    }
+
+    public void setTime(int t) {
+        seconds = t;
+        time = t;
     }
 
     void tick() {

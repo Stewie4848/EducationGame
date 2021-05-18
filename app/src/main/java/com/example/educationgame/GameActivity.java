@@ -1,12 +1,15 @@
 package com.example.educationgame;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -16,7 +19,10 @@ public class GameActivity extends AppCompatActivity {
     private boolean isRunning;
     private TextView timer;
     private TextView question;
+    public int finishedTime;
+    public int finishedScore;
     private TextView score;
+    private ProgressBar progressBar;
     private Handler handler;
     private static final int[] buttons = {
             R.id.button1, R.id.button2, R.id.button3, R.id.button4
@@ -39,14 +45,14 @@ public class GameActivity extends AppCompatActivity {
 
         timer = findViewById(R.id.timer);
         question = findViewById(R.id.question);
-        game.setTime_setting(120);
         score = findViewById(R.id.score);
+        progressBar = findViewById(R.id.progressBar);
 
 
-        game.setDifficulty(1);
-
+        getSettings();
         enableTimer();
         setDifficulty();
+
         getQuestions();
         startQuestions();
 
@@ -62,6 +68,11 @@ public class GameActivity extends AppCompatActivity {
                     game.tick();
                     timer.setText(game.getSeconds());
                     handler.postDelayed(this, 1000);
+                    progressBar.setProgress(game.time - (-game.seconds + game.time));
+
+                    if (game.seconds <= 0) {
+                        gameComplete();
+                    }
                 }
             }
         });
@@ -112,6 +123,7 @@ public class GameActivity extends AppCompatActivity {
         }
         System.out.println(questionOrder.size());
         System.out.println(questions.length);
+        System.out.println("Time " + game.seconds);
         setAnswers(j);
 
 
@@ -142,6 +154,8 @@ public class GameActivity extends AppCompatActivity {
 
 
     private void gameComplete() {
+        finishedScore = game.score;
+        finishedTime = game.seconds;
 
 
     }
@@ -175,6 +189,18 @@ public class GameActivity extends AppCompatActivity {
     private void updateScore() {
         score.setText(game.getScore());
         System.out.println(game.getScore());
+    }
+
+    private void getSettings() {
+        SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
+        String username = settings.getString("username", getString(R.string.default_username));
+        String difficulty = settings.getString("difficulty_setting", "1");
+        String time = settings.getString("time_setting", "60");
+        game.username = username;
+        game.difficulty = Integer.parseInt(difficulty);
+        game.setTime(Integer.parseInt(time));
+        progressBar.setMax(game.time);
+
     }
 
 

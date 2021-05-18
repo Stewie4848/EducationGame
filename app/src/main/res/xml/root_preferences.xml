@@ -4,7 +4,7 @@
 
         <EditTextPreference
             app:key="username"
-            app:title="User Name"
+            app:title="@string/username_title"
             app:defaultValue="@string/default_username"
             app:useSimpleSummaryProvider="true"/>
 

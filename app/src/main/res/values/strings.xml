@@ -13,6 +13,7 @@
     <string name="time_title">Set time</string>
     <string name="difficulty_title">Difficulty</string>
 
+    <string name="username_title">User Name</string>
     <string name="default_username">Crazy Monkey</string>
 
     <!-- Sync Preferences -->

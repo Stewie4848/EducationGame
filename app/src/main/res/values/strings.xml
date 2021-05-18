@@ -13,6 +13,8 @@
     <string name="time_title">Set time</string>
     <string name="difficulty_title">Difficulty</string>
 
+    <string name="default_username">Crazy Monkey</string>
+
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>
     <string name="attachment_title">Download incoming attachments</string>

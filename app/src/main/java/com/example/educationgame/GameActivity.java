@@ -75,6 +75,7 @@ public class GameActivity extends AppCompatActivity {
 
                     if (game.seconds <= 0) {
                         gameComplete();
+                        isRunning = false;
                     }
                 }
             }
@@ -164,10 +165,11 @@ public class GameActivity extends AppCompatActivity {
         finishedTime = game.seconds;
 
         Intent intent = new Intent(this, GameComplete.class);
-        intent.putExtra("score", game.score);
+        intent.putExtra("score", finishedScore);
         intent.putExtra("Correct", correctAnswers);
         intent.putExtra("Wrong", wrongAnswers);
         startActivity(intent);
+        finish();
 
 
     }

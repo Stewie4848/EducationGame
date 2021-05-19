@@ -28,7 +28,7 @@ public class EducationDatabaseHelper extends SQLiteOpenHelper {
         ContentValues scoreValues = new ContentValues();
         scoreValues.put("USERNAME", username);
         scoreValues.put("SCORE", score);
-        scoreValues.put("time", time);
+        scoreValues.put("TIME", time);
         db.insert("HIGHSCORE", null, scoreValues);
     }
 
@@ -40,11 +40,12 @@ public class EducationDatabaseHelper extends SQLiteOpenHelper {
                     + "TIME INTEGER);");
 
             insertScore(db, "L33T HACKER", 10000, 36);
+            insertScore(db, "Emon Lusk", 999, 20);
 
 
         }
         if (oldVersion < 2) {
-            db.execSQL("ALTER TABLE HIGHSCORE ADD COLUMN FAVOURITE NUMERIC");
+
         }
     }
 }

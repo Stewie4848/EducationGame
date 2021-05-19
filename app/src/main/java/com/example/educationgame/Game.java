@@ -11,9 +11,6 @@ public class Game {
         seconds = time;
     }
 
-//    public void setDifficulty(int i) {
-//        difficulty = i;
-//    }
 
     public void setTime(int t) {
         seconds = t;

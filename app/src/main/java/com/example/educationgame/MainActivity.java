@@ -1,12 +1,12 @@
 package com.example.educationgame;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.settingsButton) {
-            // do something here
             Intent intent = new Intent(this, SettingsActivity.class);
             startActivity(intent);
         }

@@ -1,8 +1,5 @@
 package com.example.educationgame;
 
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,9 +8,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 public class GameComplete extends AppCompatActivity {
 
     private EducationDatabaseHelper dbHelper = new EducationDatabaseHelper(this);
+    private String sharingToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,8 @@ public class GameComplete extends AppCompatActivity {
             values.put("TIME", time);
             db.insert("HIGHSCORE", null, values);
 
+            sharingToast = String.format("I just scored %d in %d seconds playing Geography Dash!", score, time);
+
 
         }
 
@@ -71,6 +74,13 @@ public class GameComplete extends AppCompatActivity {
     }
 
     public void tweet(View view) {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Test text");
+        sendIntent.setType("text/plain");
+
+        Intent shareIntent = Intent.createChooser(sendIntent, null);
+        startActivity(shareIntent);
 
     }
 

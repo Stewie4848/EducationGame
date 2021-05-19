@@ -1,6 +1,5 @@
 package com.example.educationgame;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
@@ -16,8 +15,8 @@ import androidx.preference.PreferenceManager;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private final String DEFAULT_TIME = "60";
-    private final String DEFAULT_DIFFICULTY = "1";
+    private static final String DEFAULT_TIME = "60";
+    private static final String DEFAULT_DIFFICULTY = "1";
 
 
     @Override

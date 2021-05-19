@@ -74,8 +74,9 @@ public class GameActivity extends AppCompatActivity {
                     progressBar.setProgress(game.time - (-game.seconds + game.time));
 
                     if (game.seconds <= 0) {
-                        gameComplete();
                         isRunning = false;
+                        gameComplete();
+
                     }
                 }
             }
@@ -90,8 +91,7 @@ public class GameActivity extends AppCompatActivity {
             System.out.println("Correct");
             correctAnswers += 1;
 
-        }
-        else {
+        } else {
             game.removeScore();
             System.out.println("Wrong");
             wrongAnswers += 1;
@@ -121,6 +121,7 @@ public class GameActivity extends AppCompatActivity {
             }
             if (questionOrder.size() == questions.length) {
                 gameComplete();
+                finish();
                 break;
             } else {
                 questionOrder.add(j);
@@ -168,6 +169,8 @@ public class GameActivity extends AppCompatActivity {
         intent.putExtra("score", finishedScore);
         intent.putExtra("Correct", correctAnswers);
         intent.putExtra("Wrong", wrongAnswers);
+        intent.putExtra("Username", game.username);
+        intent.putExtra("Time", game.seconds);
         startActivity(intent);
         finish();
 
@@ -195,7 +198,6 @@ public class GameActivity extends AppCompatActivity {
         Button button = findViewById(buttons[b]);
         button.setText(answers[questionID]);
         correctButton = button.getId();
-
 
 
     }

@@ -23,6 +23,9 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="default_settings">Default</string>
+    <string name="user_name">User Name</string>
+    <string name="score">Score</string>
+    <string name="time_left">Time Left</string>
 
     <string-array name="easy_questions">
         <item>The body of the egyptian sphinx was based on which animal?</item>

@@ -1,5 +1,6 @@
 package com.example.educationgame;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.Cursor;
@@ -8,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Toast;
@@ -22,30 +24,35 @@ public class ScoreboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scoreboard_activity);
 
-        SQLiteOpenHelper edcationDatabaseHelper = new EducationDatabaseHelper(this);
-        ListView listScores = (ListView) findViewById(R.id.score_score);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+
+        SQLiteOpenHelper educationDatabaseHelper = new EducationDatabaseHelper(this);
         ListView listNames = (ListView) findViewById(R.id.score_name);
-        ListView listTimes = (ListView) findViewById(R.id.score_time);
 
         try {
-            db = edcationDatabaseHelper.getReadableDatabase();
+            db = educationDatabaseHelper.getReadableDatabase();
             cursor = db.query("HIGHSCORE",
                     new String[]{"_id", "USERNAME", "SCORE", "TIME"}, null, null, null, null, "SCORE DESC");
 
-            SimpleCursorAdapter listAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, cursor, new String[]{"USERNAME"}, new int[]{android.R.id.text1}, 0);
+            SimpleCursorAdapter listAdapter = new SimpleCursorAdapter(this, R.layout.item_score, cursor, new String[]{"USERNAME", "SCORE", "TIME"}, new int[]{R.id.item_username, R.id.item_score, R.id.item_time}, 0);
             listNames.setAdapter(listAdapter);
-
-            listAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, cursor, new String[]{"SCORE"}, new int[]{android.R.id.text1}, 0);
-            listScores.setAdapter(listAdapter);
-
-            listAdapter = new SimpleCursorAdapter(this, android.R.layout.simple_list_item_1, cursor, new String[]{"TIME"}, new int[]{android.R.id.text1}, 0);
-            listTimes.setAdapter(listAdapter);
-
 
 
         } catch (SQLiteException e) {
             Toast toast = Toast.makeText(this, "Database Unavailable", Toast.LENGTH_SHORT);
             toast.show();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

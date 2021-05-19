@@ -16,12 +16,12 @@ public class EducationDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        updateMyDatabase(db, 0, DB_VERSION);
+        updateMyDatabase(db, 0);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        updateMyDatabase(db, oldVersion, newVersion);
+        updateMyDatabase(db, oldVersion);
     }
 
     private static void insertScore(SQLiteDatabase db, String username, int score, int time) {
@@ -32,7 +32,7 @@ public class EducationDatabaseHelper extends SQLiteOpenHelper {
         db.insert("HIGHSCORE", null, scoreValues);
     }
 
-    private void updateMyDatabase(SQLiteDatabase db, int oldVersion, int newVersion) {
+    private void updateMyDatabase(SQLiteDatabase db, int oldVersion) {
         if (oldVersion < 1) {
             db.execSQL("CREATE TABLE HIGHSCORE (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     + "USERNAME TEXT, "
@@ -44,8 +44,6 @@ public class EducationDatabaseHelper extends SQLiteOpenHelper {
 
 
         }
-        if (oldVersion < 2) {
 
-        }
     }
 }

@@ -6,6 +6,8 @@ public class Game {
     public int time;
     public int score = 0;
     public String username;
+    public int skipTotal;
+    private int multiplier;
 
     Game() {
         seconds = time;
@@ -38,6 +40,24 @@ public class Game {
         score -= difficulty * 2 * 100;
         if (score <= 0) {
             score = 0;
+        }
+    }
+
+    public void setSkipTotal(int skipAmount) {
+        skipTotal = skipAmount;
+        switch (skipTotal) {
+            case 0:
+                multiplier = 6;
+            case 1:
+                multiplier = 5;
+            case 2:
+                multiplier = 4;
+            case 3:
+                multiplier = 3;
+            case 4:
+                multiplier = 2;
+            case 5:
+                multiplier = 1;
         }
     }
 

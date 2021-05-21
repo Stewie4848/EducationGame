@@ -17,6 +17,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private static final String DEFAULT_TIME = "60";
     private static final String DEFAULT_DIFFICULTY = "1";
+    private static final String DEFAULT_SKIP_AMOUNT = "3";
 
 
     @Override
@@ -42,6 +43,8 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
             setPreferencesFromResource(R.xml.root_preferences, rootKey);
+
+            // Set time setting to numerical only
             EditTextPreference pref = findPreference("time_setting");
             if (pref != null) {
                 pref.setOnBindEditTextListener(
@@ -62,6 +65,7 @@ public class SettingsActivity extends AppCompatActivity {
                 .putString("time_setting", DEFAULT_TIME)
                 .putString("difficulty_setting", DEFAULT_DIFFICULTY)
                 .putString("username", getResources().getString(R.string.default_username))
+                .putString("skip_setting", DEFAULT_SKIP_AMOUNT)
                 .apply();
         onBackPressed();
     }

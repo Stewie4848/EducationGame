@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
@@ -39,8 +40,10 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
     private ArrayList<Integer> questionOrder = new ArrayList<>();
     private int correctButton;
     private int correctAnswers = 0;
+    private int skippedQuestions = 0;
     private int wrongAnswers = 0;
     private int shaken = 0;
+    private TextView shakeAmount;
 
 
 
@@ -54,11 +57,12 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
         ShakeDetector sd = new ShakeDetector(this);
         sd.start(sensorManager);
 
-
+        // Create variables from View
         timer = findViewById(R.id.timer);
         question = findViewById(R.id.question);
         score = findViewById(R.id.score);
         progressBar = findViewById(R.id.progressBar);
+        shakeAmount = findViewById(R.id.shakeAmount);
 
 
         getSettings();
@@ -81,7 +85,6 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
                     timer.setText(game.getSeconds());
                     handler.postDelayed(this, 1000);
                     progressBar.setProgress(game.time - (-game.seconds + game.time));
-
                     if (game.seconds <= 0) {
                         isRunning = false;
                         gameComplete();
@@ -94,7 +97,6 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
 
 
     public void buttonPressed(View view) {
-
         if (view.getId() == correctButton) {
             game.addScore();
             System.out.println("Correct");
@@ -104,7 +106,6 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
             game.removeScore();
             System.out.println("Wrong");
             wrongAnswers += 1;
-
         }
         updateScore();
         newQuestion();
@@ -154,6 +155,7 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
     }
 
     private void setDifficulty() {
+        shakeAmount.setText(String.valueOf(game.skipTotal));
         switch (game.difficulty) {
             case 1:
                 questionArray = R.array.easy_questions;
@@ -215,15 +217,14 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
         score.setText(game.getScore());
         System.out.println(game.getScore());
     }
-
+    // TODO add skips variable
     private void getSettings() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
-        String username = settings.getString("username", getString(R.string.default_username));
-        String difficulty = settings.getString("difficulty_setting", "1");
-        String time = settings.getString("time_setting", "60");
-        game.username = username;
-        game.difficulty = Integer.parseInt(difficulty);
-        game.setTime(Integer.parseInt(time));
+
+        game.username = settings.getString("username", getString(R.string.default_username));
+        game.difficulty = Integer.parseInt(settings.getString("difficulty_setting", "1"));
+        game.setTime(Integer.parseInt(settings.getString("time_setting", "60")));
+        game.setSkipTotal(Integer.parseInt(settings.getString("skip_setting", "3")));
         progressBar.setMax(game.time);
 
     }
@@ -237,6 +238,14 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
     }
 
     private void skipQuestion() {
+        if (skippedQuestions < game.skipTotal) {
+            skippedQuestions += 1;
+            shakeAmount.setText(String.valueOf(game.skipTotal - skippedQuestions));
+            newQuestion();
+        }
+        else {
+            Toast.makeText(this, "No skips left!", Toast.LENGTH_SHORT).show();
+        }
 
     }
 

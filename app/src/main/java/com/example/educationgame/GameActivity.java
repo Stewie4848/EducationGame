@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GameActivity extends AppCompatActivity implements ShakeDetector.Listener {
-    private Game game = new Game();
+    private final Game game = new Game();
     private boolean isRunning;
     private TextView timer;
     private TextView question;
@@ -39,7 +39,7 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
     private int answerArray;
     private final Random random = new Random();
     private String[] answers;
-    private ArrayList<Integer> questionOrder = new ArrayList<>();
+    private final ArrayList<Integer> questionOrder = new ArrayList<>();
     private int correctButton;
     private int correctAnswers = 0;
     private int skippedQuestions = 0;
@@ -49,7 +49,6 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
     private Vibrator vibrator;
     private ShakeDetector sd;
     private SensorManager sensorManager;
-
 
 
     @Override
@@ -95,6 +94,7 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
 
     }
 
+    // Note: Timer does not stop during game in order to prevent cheating!
     private void enableTimer() {
         isRunning = true;
         handler = new Handler();
@@ -190,18 +190,15 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
 
             case 3:
                 questionArray = R.array.hard_questions;
-                answerArray = R.array.medium_answers;
+                answerArray = R.array.hard_answers;
                 break;
         }
     }
 
 
     private void gameComplete() {
-        int finishedScore = game.score;
-        int finishedTime = game.seconds;
-
         Intent intent = new Intent(this, GameComplete.class);
-        intent.putExtra("score", finishedScore);
+        intent.putExtra("score", game.score);
         intent.putExtra("Correct", correctAnswers);
         intent.putExtra("Wrong", wrongAnswers);
         intent.putExtra("Username", game.username);
@@ -274,8 +271,7 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
             skippedQuestions += 1;
             shakeAmount.setText(String.valueOf(game.skipTotal - skippedQuestions));
             newQuestion();
-        }
-        else {
+        } else {
             Toast.makeText(this, "No skips left!", Toast.LENGTH_SHORT).show();
         }
 

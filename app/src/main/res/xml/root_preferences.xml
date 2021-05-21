@@ -16,12 +16,12 @@
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
+            android:entries="@array/skip_amount"
+            android:entryValues="@array/skip_amount"
             app:defaultValue="3"
             app:key="skip_setting"
             app:title="Amount of skips"
-            app:useSimpleSummaryProvider="true"
-            android:entries="@array/skip_amount"
-            android:entryValues="@array/skip_amount"/>
+            app:useSimpleSummaryProvider="true" />
 
 
         <ListPreference

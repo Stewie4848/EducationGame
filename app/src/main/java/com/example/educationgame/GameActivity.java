@@ -2,6 +2,7 @@ package com.example.educationgame;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -12,10 +13,12 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceManager;
 
+import com.squareup.seismic.ShakeDetector;
+
 import java.util.ArrayList;
 import java.util.Random;
 
-public class GameActivity extends AppCompatActivity {
+public class GameActivity extends AppCompatActivity implements ShakeDetector.Listener {
     private Game game = new Game();
     private boolean isRunning;
     private TextView timer;
@@ -37,13 +40,19 @@ public class GameActivity extends AppCompatActivity {
     private int correctButton;
     private int correctAnswers = 0;
     private int wrongAnswers = 0;
-//    private int score;
+    private int shaken = 0;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        // Set up sensor
+        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        ShakeDetector sd = new ShakeDetector(this);
+        sd.start(sensorManager);
 
 
         timer = findViewById(R.id.timer);
@@ -216,6 +225,18 @@ public class GameActivity extends AppCompatActivity {
         game.difficulty = Integer.parseInt(difficulty);
         game.setTime(Integer.parseInt(time));
         progressBar.setMax(game.time);
+
+    }
+
+    @Override
+    public void hearShake() {
+        System.out.println("Shaken");
+        shaken += 1;
+        System.out.println("Shaken" + shaken);
+        skipQuestion();
+    }
+
+    private void skipQuestion() {
 
     }
 

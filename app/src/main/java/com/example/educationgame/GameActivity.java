@@ -1,10 +1,14 @@
 package com.example.educationgame;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.hardware.SensorManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.VibrationEffect;
+import android.os.Vibrator;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -24,8 +28,6 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
     private boolean isRunning;
     private TextView timer;
     private TextView question;
-    public int finishedTime;
-    public int finishedScore;
     private TextView score;
     private ProgressBar progressBar;
     private Handler handler;
@@ -44,6 +46,9 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
     private int wrongAnswers = 0;
     private int shaken = 0;
     private TextView shakeAmount;
+    private Vibrator vibrator;
+    private ShakeDetector sd;
+    private SensorManager sensorManager;
 
 
 
@@ -52,10 +57,9 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
-        // Set up sensor
-        SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-        ShakeDetector sd = new ShakeDetector(this);
-        sd.start(sensorManager);
+        // Set up sensor & vibration
+
+        vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
         // Create variables from View
         timer = findViewById(R.id.timer);
@@ -71,6 +75,23 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
 
         getQuestions();
         startQuestions();
+
+    }
+
+    @Override
+    protected void onResume() {
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sd = new ShakeDetector(this);
+        sd.start(sensorManager);
+        super.onResume();
+
+    }
+
+    @Override
+    protected void onPause() {
+        sd.stop();
+        sensorManager.unregisterListener(sd);
+        super.onPause();
 
     }
 
@@ -173,8 +194,8 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
 
 
     private void gameComplete() {
-        finishedScore = game.score;
-        finishedTime = game.seconds;
+        int finishedScore = game.score;
+        int finishedTime = game.seconds;
 
         Intent intent = new Intent(this, GameComplete.class);
         intent.putExtra("score", finishedScore);
@@ -217,7 +238,7 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
         score.setText(game.getScore());
         System.out.println(game.getScore());
     }
-    // TODO add skips variable
+
     private void getSettings() {
         SharedPreferences settings = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -231,9 +252,17 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
 
     @Override
     public void hearShake() {
-        System.out.println("Shaken");
         shaken += 1;
-        System.out.println("Shaken" + shaken);
+
+        // Vibrate phone
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createOneShot(500, VibrationEffect.DEFAULT_AMPLITUDE));
+        } else {
+            //deprecated in API 26
+            vibrator.vibrate(500);
+        }
+
+        System.out.println("Shaken: " + shaken);
         skipQuestion();
     }
 

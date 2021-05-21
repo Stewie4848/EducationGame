@@ -32,7 +32,7 @@ public class Game {
     }
 
     public void addScore() {
-        score += difficulty * 100;
+        score += difficulty * 100 * multiplier;
 
     }
 

@@ -183,12 +183,15 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
                 answerArray = R.array.easy_answers;
                 break;
 
-//            case 2:
-//                questionArray = R.array.medium_questions;
-//                break;
-//
-//            case 3:
-//                questionArray = R.array.hard_questions;
+            case 2:
+                questionArray = R.array.medium_questions;
+                answerArray = R.array.medium_answers;
+                break;
+
+            case 3:
+                questionArray = R.array.hard_questions;
+                answerArray = R.array.medium_answers;
+                break;
         }
     }
 

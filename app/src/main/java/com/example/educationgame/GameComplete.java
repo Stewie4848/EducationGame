@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class GameComplete extends AppCompatActivity {
 
-    private EducationDatabaseHelper dbHelper = new EducationDatabaseHelper(this);
+    private final EducationDatabaseHelper dbHelper = new EducationDatabaseHelper(this);
     private String sharingToast;
 
     @Override
@@ -64,19 +64,20 @@ public class GameComplete extends AppCompatActivity {
     public void scoreboardPressed(View view) {
         Intent intent = new Intent(this, ScoreboardActivity.class);
         startActivity(intent);
-        finish();
+
 
     }
 
     public void tryAgain(View view) {
         Intent intent = new Intent(this, GameActivity.class);
         startActivity(intent);
+        finish();
     }
 
     public void tweet(View view) {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "Test text");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, sharingToast);
         sendIntent.setType("text/plain");
 
         Intent shareIntent = Intent.createChooser(sendIntent, null);

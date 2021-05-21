@@ -26,6 +26,7 @@
     <string name="user_name">User Name</string>
     <string name="score">Score</string>
     <string name="time_left">Time Left</string>
+    <string name="shakes">Shakes:</string>
 
     <string-array name="easy_questions">
         <item>The body of the egyptian sphinx was based on which animal?</item>
@@ -51,5 +52,58 @@
         <item>Andorra</item>
         <item>Rome</item>
         <item>China</item>
+    </string-array>
+
+    <string-array name="medium_questions">
+        <item>What is the largest non-continental island in the world?</item>
+        <item>What is the capital of Chile?</item>
+        <item>Kuala Lumpur is the capital of which country?</item>
+        <item>What African country has Portuguese as its official language?</item>
+        <item>What is the capital of the State of Washington, United States?</item>
+        <item>The historical city Timbuktu is located in which West African country?</item>
+        <item>Which country has the abbreviation "CH"?</item>
+        <item>What is the capital of New Zealand?</item>
+        <item>What is the capital of Australia?</item>
+        <item>Which English county will you find the University of East Anglia?</item>
+    </string-array>
+
+    <string-array name="medium_answers">
+
+        <item>Greenland</item>
+        <item>Santiago</item>
+        <item>Malaysia</item>
+        <item>Mozambique</item>
+        <item>Olympia</item>
+        <item>Mali</item>
+        <item>Switzerland</item>
+        <item>Wellington</item>
+        <item>ACT</item>
+        <item>Norfolk</item>
+    </string-array>
+
+    <string-array name="hard_questions">
+        <item>In which city is the Big Nickel located in?</item>
+        <item>Which of these countries are located in the Caribbean?</item>
+        <item>The Hunua Ranges is located in...</item>
+        <item>Fucking is a village in which country?</item>
+        <item>What was the most populous Muslim-majority nation in 2010?</item>
+        <item>What is the Finnish word for Finland?</item>
+        <item>What is the tallest mountain in Canada?</item>
+        <item>What is Canada's largest island?</item>
+        <item>What is the capital city of Bermuda?</item>
+        <item>In which country is Tallinn located?</item>
+    </string-array>
+
+    <string-array name="hard_answers">
+        <item>Sudbury</item>
+        <item>Barbados</item>
+        <item>New Zealand</item>
+        <item>Austria</item>
+        <item>Indonesia</item>
+        <item>Suomi</item>
+        <item>Logan</item>
+        <item>Baffin</item>
+        <item>Hamilton</item>
+        <item>Estonia</item>
     </string-array>
 </resources>

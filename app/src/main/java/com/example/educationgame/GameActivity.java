@@ -49,12 +49,15 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
     private Vibrator vibrator;
     private ShakeDetector sd;
     private SensorManager sensorManager;
+    public AudioManager audioManager;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+
+        audioManager = new AudioManager(this);
 
         // Set up sensor & vibration
 
@@ -74,6 +77,8 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
 
         getQuestions();
         startQuestions();
+
+        System.out.println(audioManager.isReady());
 
     }
 
@@ -133,11 +138,17 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
             game.addScore();
             System.out.println("Correct");
             correctAnswers += 1;
+            if (audioManager.isReady()) {
+                audioManager.play(Sound.CORRECT);
+            }
 
         } else {
             game.removeScore();
             System.out.println("Wrong");
             wrongAnswers += 1;
+            if (audioManager.isReady()) {
+                audioManager.play(Sound.INCORRECT);
+            }
         }
         updateScore();
         newQuestion();
@@ -151,6 +162,9 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
         questionOrder.add(i);
         question.setText(questions[i]);
         setAnswers(i);
+        if (audioManager.isReady()) {
+            audioManager.play(Sound.CORRECT);
+        }
     }
 
 
@@ -216,7 +230,6 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
         intent.putExtra("Time", game.seconds);
         finish();
         startActivity(intent);
-
 
 
     }

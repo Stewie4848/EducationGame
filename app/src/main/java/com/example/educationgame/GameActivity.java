@@ -94,6 +94,13 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
 
     }
 
+    @Override
+    public void onDestroy() {
+        handler.removeCallbacks(this::enableTimer);
+        game.seconds = -1;
+        super.onDestroy();
+    }
+
     // Note: Timer does not stop during game in order to prevent cheating!
     private void enableTimer() {
         isRunning = true;
@@ -106,10 +113,14 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
                     timer.setText(game.getSeconds());
                     handler.postDelayed(this, 1000);
                     progressBar.setProgress(game.time - (-game.seconds + game.time));
-                    if (game.seconds <= 0) {
+                    if (game.seconds == 0) {
                         isRunning = false;
                         gameComplete();
 
+                    }
+                    if (game.seconds < 0) {
+                        isRunning = false;
+                        finish();
                     }
                 }
             }
@@ -203,8 +214,9 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
         intent.putExtra("Wrong", wrongAnswers);
         intent.putExtra("Username", game.username);
         intent.putExtra("Time", game.seconds);
-        startActivity(intent);
         finish();
+        startActivity(intent);
+
 
 
     }
@@ -275,6 +287,13 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
             Toast.makeText(this, "No skips left!", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        isRunning = false;
+        finish();
+        super.onBackPressed();
     }
 
 

@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_black"
     android:orientation="vertical">
 
     <FrameLayout
@@ -14,5 +15,6 @@
         android:layout_gravity="center"
         android:layout_margin="15sp"
         android:onClick="onDefaultPressed"
-        android:text="@string/default_settings" />
+        android:text="@string/default_settings"
+        android:textColor="@color/white" />
 </LinearLayout>

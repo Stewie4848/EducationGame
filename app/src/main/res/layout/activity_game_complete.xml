@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_black"
     tools:context=".GameComplete">
 
     <TextView
@@ -11,12 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30sp"
-        android:text="FINAL SCORE"
+        android:text="@string/final_score"
         android:textSize="46sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
 
 
     <TextView
@@ -24,33 +24,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30sp"
-        app:layout_constraintTop_toBottomOf="@+id/score_title"
+        android:textAlignment="center"
+        android:textSize="50sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:textSize="50sp"
-        android:textAlignment="center"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/score_title" />
 
     <TextView
         android:id="@+id/correct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30sp"
+        android:text="@string/correct"
+        android:textSize="40sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/correct_amount"
-        app:layout_constraintTop_toBottomOf="@id/score_game_complete"
-        android:text="Correct: "
-        android:textSize="40sp"/>
+        app:layout_constraintTop_toBottomOf="@id/score_game_complete" />
 
     <TextView
         android:id="@+id/correct_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30sp"
-        app:layout_constraintRight_toRightOf="parent"
+        android:textSize="40sp"
         app:layout_constraintLeft_toRightOf="@+id/correct"
-        app:layout_constraintTop_toBottomOf="@id/score_game_complete"
-        android:textSize="40sp"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/score_game_complete" />
 
 
     <TextView
@@ -58,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30sp"
-        android:text="Wrong: "
+        android:text="@string/wrong"
         android:textSize="40sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/wrong_amount"
@@ -69,51 +68,52 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30sp"
-        app:layout_constraintTop_toBottomOf="@+id/correct"
+        android:textSize="40sp"
         app:layout_constraintLeft_toRightOf="@+id/wrong"
         app:layout_constraintRight_toRightOf="parent"
-        android:textSize="40sp"/>
+        app:layout_constraintTop_toBottomOf="@+id/correct" />
 
     <Button
         android:id="@+id/send_to_scores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30sp"
-        app:layout_constraintTop_toBottomOf="@+id/wrong"
+        android:onClick="scoreboardPressed"
+        android:text="@string/scoreboard"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Scoreboard"
-        android:textSize="30sp"
-        android:onClick="scoreboardPressed"
+        app:layout_constraintTop_toBottomOf="@+id/wrong"
 
         />
+
     <Button
         android:id="@+id/try_again"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30sp"
-        app:layout_constraintTop_toBottomOf="@+id/send_to_scores"
+        android:onClick="tryAgain"
+        android:text="@string/try_again"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/share_to_twitter"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/share_to_twitter"
-        android:text="Try Again"
-        android:textSize="30sp"
-        android:onClick="tryAgain"/>
+        app:layout_constraintTop_toBottomOf="@+id/send_to_scores" />
 
     <Button
         android:id="@+id/share_to_twitter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30sp"
+        android:onClick="tweet"
+        android:text="@string/tweet"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/try_again"
-        android:text="Tweet"
-        android:textSize="30sp"
-        android:onClick="tweet"/>
-
-
-
+        app:layout_constraintTop_toBottomOf="@+id/try_again" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_black"
     tools:context=".GameActivity">
 
 
@@ -12,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10sp"
-        android:text="0"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="40sp"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -33,6 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5sp"
         android:text="@string/shakes"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/question"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -43,7 +45,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="2sp"
-        android:text="5"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/question"
         app:layout_constraintLeft_toRightOf="@id/shakeText"
@@ -54,7 +56,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20sp"
-        android:text="60"
         android:textSize="30sp"
         app:layout_constraintRight_toLeftOf="@id/progressBar"
         app:layout_constraintTop_toBottomOf="@id/score" />
@@ -106,6 +107,7 @@
         android:layout_width="150sp"
         android:layout_height="150sp"
         android:onClick="buttonPressed"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/button2" />
@@ -115,6 +117,7 @@
         android:layout_width="150sp"
         android:layout_height="150sp"
         android:onClick="buttonPressed"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/button4"
         app:layout_constraintLeft_toRightOf="@+id/button1"
         app:layout_constraintRight_toRightOf="parent" />
@@ -125,6 +128,7 @@
         android:layout_height="150sp"
         android:layout_marginBottom="15sp"
         android:onClick="buttonPressed"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/button4" />
@@ -135,6 +139,7 @@
         android:layout_height="150sp"
         android:layout_marginBottom="15sp"
         android:onClick="buttonPressed"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/button3"
         app:layout_constraintRight_toRightOf="parent" />

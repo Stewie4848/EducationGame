@@ -28,6 +28,12 @@
     <string name="time_left">Time Left</string>
     <string name="shakes">Shakes:</string>
     <string name="background_image">Background Image</string>
+    <string name="scoreboard">Scoreboard</string>
+    <string name="try_again">Try Again</string>
+    <string name="tweet">Tweet</string>
+    <string name="final_score">FINAL SCORE</string>
+    <string name="correct">Correct:</string>
+    <string name="wrong">Wrong:</string>
 
     <string-array name="easy_questions">
         <item>The body of the egyptian sphinx was based on which animal?</item>

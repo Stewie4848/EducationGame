@@ -172,25 +172,25 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
         boolean state = true;
         int j = random.nextInt(questions.length);
 
-            while (state) {
-                j = random.nextInt(questions.length);
-                if (questionOrder.size() >= questions.length - 1) {
-                    state = false;
-                }
-                if (!questionOrder.contains(j)) {
-                    state = false;
-                }
-
+        while (state) {
+            j = random.nextInt(questions.length);
+            if (questionOrder.size() >= questions.length) {
+                state = false;
             }
-            if (questionOrder.size() == questions.length) {
-                finish();
-                gameComplete();
-
-
-            } else {
-                questionOrder.add(j);
-                question.setText(questions[j]);
+            if (!questionOrder.contains(j)) {
+                state = false;
             }
+
+        }
+        if (questionOrder.size() == questions.length) {
+            finish();
+            gameComplete();
+
+
+        } else {
+            questionOrder.add(j);
+            question.setText(questions[j]);
+        }
 
         System.out.println(questionOrder.size());
         System.out.println(questions.length);
@@ -248,9 +248,9 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
         // Sets an answer for each button
         for (int value : buttons) {
             Button button = findViewById(value);
-            int i = random.nextInt(answers.length - 1);
+            int i = random.nextInt(answers.length );
             while (questionButtons.contains(i) || i == questionID) {
-                i = random.nextInt(answers.length - 1);
+                i = random.nextInt(answers.length);
             }
             questionButtons.add(i);
             button.setText(answers[i]);
@@ -258,7 +258,7 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
         }
 
         // Finds a random button and assigns the correct answer
-        int b = random.nextInt(buttons.length - 1);
+        int b = random.nextInt(buttons.length);
         Button button = findViewById(buttons[b]);
         button.setText(answers[questionID]);
         correctButton = button.getId();

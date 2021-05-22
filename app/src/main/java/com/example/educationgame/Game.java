@@ -45,19 +45,23 @@ public class Game {
 
     public void setSkipTotal(int skipAmount) {
         skipTotal = skipAmount;
-        switch (skipTotal) {
-            case 0:
-                multiplier = 6;
-            case 1:
-                multiplier = 5;
-            case 2:
-                multiplier = 4;
-            case 3:
-                multiplier = 3;
-            case 4:
-                multiplier = 2;
-            case 5:
-                multiplier = 1;
+        if (skipTotal == 0) {
+            multiplier = 6;
+        }
+        if (skipTotal == 1) {
+            multiplier = 5;
+        }
+        if (skipTotal == 2) {
+            multiplier = 4;
+        }
+        if (skipTotal == 3) {
+            multiplier = 3;
+        }
+        if (skipTotal == 4) {
+            multiplier = 2;
+        }
+        if (skipTotal == 5) {
+            multiplier = 1;
         }
     }
 

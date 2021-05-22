@@ -170,21 +170,28 @@ public class GameActivity extends AppCompatActivity implements ShakeDetector.Lis
 
     private void newQuestion() {
         boolean state = true;
-        int j = random.nextInt(questions.length - 1);
-        while (state) {
-            if (questionOrder.contains(j)) {
-                j = random.nextInt(questions.length - 1);
+        int j = random.nextInt(questions.length);
+
+            while (state) {
+                j = random.nextInt(questions.length);
+                if (questionOrder.size() >= questions.length - 1) {
+                    state = false;
+                }
+                if (!questionOrder.contains(j)) {
+                    state = false;
+                }
+
             }
             if (questionOrder.size() == questions.length) {
-                gameComplete();
                 finish();
-                break;
+                gameComplete();
+
+
             } else {
                 questionOrder.add(j);
                 question.setText(questions[j]);
-                state = false;
             }
-        }
+
         System.out.println(questionOrder.size());
         System.out.println(questions.length);
         System.out.println("Time " + game.seconds);
